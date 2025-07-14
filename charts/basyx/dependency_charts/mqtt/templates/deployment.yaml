@@ -35,6 +35,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        {{- if .Values.apirule.enabled }}
+        sidecar.istio.io/inject: "true"
+        {{ end -}}
         {{- include "mqtt.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}

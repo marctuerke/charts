@@ -25,7 +25,7 @@
 {{- if .enabled }}
 {{- $annotations := .annotations | default dict }}
 ---
-apiVersion: gateway.kyma-project.io/v2alpha1
+apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
   name: {{ $fullName }}-{{ .type }}

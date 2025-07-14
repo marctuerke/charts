@@ -1,10 +1,10 @@
 {{- if and .Values.apirule.enabled .Values.enabled }}
-apiVersion: gateway.kyma-project.io/v2alpha1
+apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
   labels:
-    {{- include "aas-environment.labels" . | nindent 4 }}
-  name: {{ include "aas-environment.fullname" . }}
+    {{- include "aas-registry.labels" . | nindent 4 }}
+  name: {{ include "aas-registry.fullname" . }}
 spec:
   gateway: kyma-system/kyma-gateway
   {{- if .Values.apirule.corsPolicy }}

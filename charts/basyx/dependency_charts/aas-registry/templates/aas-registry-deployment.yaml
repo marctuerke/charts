@@ -16,6 +16,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
+        {{- if .Values.apirule.enabled }}
+        sidecar.istio.io/inject: "true"
+        {{ end -}}
         {{- include "aas-registry.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
