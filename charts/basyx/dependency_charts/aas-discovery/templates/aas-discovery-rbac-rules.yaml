@@ -7,5 +7,5 @@ metadata:
     {{- include "aas-discovery.labels" . | nindent 4 }}
 data:
   rbac-rules.json: |-
-{{ .Files.Get "config/rbac-rules.json" | indent 4 }}
+    {{ .Values.rbac.rules | nindent 4 }}
 {{ end -}}

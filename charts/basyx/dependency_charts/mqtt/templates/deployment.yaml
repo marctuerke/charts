@@ -17,6 +17,15 @@
 # SPDX-License-Identifier: Apache-2.0
 #################################################################################
 
+{{- $usesApirules := false -}}
+{{- if .Values.apirules -}}
+  {{- range .Values.apirules -}}
+    {{- if .enabled -}}
+      {{- $usesApirules = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +44,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- if .Values.apirule.enabled }}
+        {{- if $usesApirules }}
         sidecar.istio.io/inject: "true"
         {{ end -}}
         {{- include "mqtt.labels" . | nindent 8 }}
