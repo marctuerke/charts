@@ -205,7 +205,7 @@ mqtt:
   apirules:
       ## @param mqtt.apirules[0].enabled Enable apirule for MQTT
       ##
-    - enabled: false
+    - enabled: true
       ## @param mqtt.apirules[0].type Type of exposed service for MQTT (websockets or mqtt)
       ##
       type: websockets
@@ -404,6 +404,92 @@ aas-registry:
     # basyx.feature.authorization.rbac.file = file:/application/rbac_rules.json
     # Depends on: @param keycloak.enabled, (@param keycloak.ingress.hostname or @param keycloak.apirule.host)
     # spring.security.oauth2.resourceserver.jwt.issuer-uri = http://basyx-keycloak.basyx.svc.cluster.local:8080/realms/BaSyx
+  ## @param aas-registry.rbac Configuration for AAS Registry RBAC
+  rbac:
+    ## @param aas-registry.rbac.rules Rules for AAS Registry RBAC
+    rules: |
+      [
+        {
+          "role": "basyx-reader",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "admin",
+          "action": ["CREATE", "READ", "UPDATE", "DELETE"],
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "basyx-reader-two",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "dummyShellId_3"
+          }
+        },
+        {
+          "role": "basyx-creator",
+          "action": "CREATE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "basyx-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "basyx-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "dummyShellId_3"
+          }
+        },
+        {
+          "role": "basyx-asset-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "basyx-asset-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "specificAasId-2"
+          }
+        },
+        {
+          "role": "basyx-deleter",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "*"
+          }
+        },
+        {
+          "role": "basyx-deleter-two",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "aas-registry",
+            "aasIds": "specificAasId-2"
+          }
+        }
+      ]
 
 ## SM Registry parameters
 ##
@@ -508,6 +594,92 @@ sm-registry:
     # basyx.feature.authorization.rbac.file = file:/application/rbac_rules.json
     # Depends on: @param keycloak.enabled, (@param keycloak.ingress.hostname or @param keycloak.apirule.host)
     # spring.security.oauth2.resourceserver.jwt.issuer-uri = http://basyx-keycloak.basyx.svc.cluster.local:8080/realms/BaSyx
+  ## @param sm-registry.rbac Configuration for SM Registry RBAC
+  rbac:
+    ## @param sm-registry.rbac.rules Rules for SM Registry RBAC
+    rules: |
+      [
+        {
+          "role": "basyx-reader",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "admin",
+          "action": ["CREATE", "READ", "UPDATE", "DELETE"],
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "basyx-reader-two",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "dummySubmodelId_3"
+          }
+        },
+        {
+          "role": "basyx-creator",
+          "action": "CREATE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "basyx-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "basyx-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "dummySubmodelId_3"
+          }
+        },
+        {
+          "role": "basyx-asset-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "basyx-asset-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "specificSubmodelId-2"
+          }
+        },
+        {
+          "role": "basyx-deleter",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "*"
+          }
+        },
+        {
+          "role": "basyx-deleter-two",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "submodel-registry",
+            "submodelIds": "specificSubmodelId-2"
+          }
+        }
+      ]
 
 ## AAS Discovery parameters
 ##
@@ -615,6 +787,53 @@ aas-discovery:
       allowOrigins:
         - regex: ".*" # allow all origins
       allowCredentials: true 
+  ## @param aas-discovery.rbac Configuration for AAS Discovery RBAC
+  rbac: 
+    ## @param aas-discovery.rbac.rules Rules for AAS Discovery RBAC
+    rules: |
+      [
+        {
+          "role": "basyx-assetid-creator",
+          "action": "CREATE",
+          "targetInformation": {
+            "@type": "aas-discovery-service",
+            "aasIds": "*",
+            "assetIds": []
+          }
+        },
+        {
+          "role": "basyx-assetid-discoverer",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "aas-discovery-service",
+            "aasIds": "*",
+            "assetIds": []
+          }
+        },
+        {
+          "role": "basyx-assetid-deleter",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "aas-discovery-service",
+            "aasIds": "*",
+            "assetIds": []
+          }
+        },
+        {
+          "role": "basyx-aas-discoverer",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "aas-discovery-service",
+            "aasIds": null,
+            "assetIds": [
+              {
+                "name": "*",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      ]
 
 ## AAS Environment parameters
 ##
@@ -749,6 +968,165 @@ aas-environment:
       allowOrigins:
         - regex: ".*" # allow all origins
       allowCredentials: true
+  ## @param aas-environment.rbac Configuration for AAS Environment RBAC
+  rbac:
+    ## @param aas-environment.rbac.rules Rules for AAS Environment RBAC
+    rules: |
+      [
+        {
+          "role": "basyx-reader",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "admin",
+          "action": ["CREATE", "READ", "UPDATE", "DELETE", "EXECUTE"],
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-reader-two",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-sme-reader",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": ["specificSubmodelId", "testSMId1", "testSMId2"],
+            "submodelElementIdShortPaths": ["testSMEIdShortPath1","smc2.specificSubmodelElementIdShort","testSMEIdShortPath2"]
+          }
+        },
+        {
+          "role": "basyx-sme-reader-two",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "smc2.specificFileSubmodelElementIdShort"
+          }
+        },
+        {
+          "role": "basyx-creator",
+          "action": "CREATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-sme-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "smc2.specificFileSubmodelElementIdShort"
+          }
+        },
+        {
+          "role": "basyx-sme-updater-two",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "smc2"
+          }
+        },
+        {
+          "role": "basyx-sme-updater-three",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId-2",
+            "submodelElementIdShortPaths": "smc1.specificSubmodelElementIdShort-2"
+          }
+        },
+        {
+          "role": "basyx-file-sme-updater",
+          "action": "UPDATE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId-2",
+            "submodelElementIdShortPaths": "smc2.specificFileSubmodelElementIdShort"
+          }
+        },
+        {
+          "role": "basyx-deleter",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-deleter-two",
+          "action": "DELETE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId-2",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-executor",
+          "action": "EXECUTE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "*",
+            "submodelElementIdShortPaths": "*"
+          }
+        },
+        {
+          "role": "basyx-executor-two",
+          "action": "EXECUTE",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId",
+            "submodelElementIdShortPaths": "square"
+          }
+        },
+        {
+          "role": "basyx-file-sme-reader",
+          "action": "READ",
+          "targetInformation": {
+            "@type": "submodel",
+            "submodelIds": "specificSubmodelId-2",
+            "submodelElementIdShortPaths": "smc2.specificFileSubmodelElementIdShort"
+          }
+        }
+      ]
 
 ## AAS Web UI parameters
 ##
