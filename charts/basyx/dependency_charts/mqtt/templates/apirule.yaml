@@ -17,14 +17,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #################################################################################
 
-{{- $fullName := include "mqtt.fullname" . }}
+{{ $fullName := include "mqtt.fullname" . }}
 {{- $labels := include "mqtt.labels" . }}
 {{- $ports := .Values.ports }}
 
-{{- range .Values.apirules}}
+{{- range .Values.apirule}}
 {{- if .enabled }}
-{{- $annotations := .annotations | default dict }}
----
+{{- $annotations := .annotations | default dict -}}
+
 apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
