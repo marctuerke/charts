@@ -92,7 +92,7 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-apirules:
+apirule:
   - enabled: false
     type: websockets
     # -- Specifies the Istio Gateway. The value must reference an actual Gateway in the cluster.
