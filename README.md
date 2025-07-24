@@ -24,7 +24,7 @@ The configuration for external supporting charts are generally added as part of 
 
 - MongoDB (separate due to external issues)
 - Kafka (WIP)
-- Mosquitto (WIP)
+- Mosquitto
 - others (not currently in scope)
 
 ## Caveats

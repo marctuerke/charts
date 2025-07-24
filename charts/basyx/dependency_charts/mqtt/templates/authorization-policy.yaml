@@ -1,8 +1,15 @@
-{{- if .Values.enabled }}
+{{- $apiruleEnabled := false }}
+{{- range .Values.apirule }}
+  {{- if .enabled }}
+    {{- $apiruleEnabled = true }}
+  {{- end }}
+{{- end }}
+
+{{- if and $apiruleEnabled .Values.enabled }}
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: {{ include "sm-registry.fullname" . }}
+  name: {{ include "mqtt.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   action: ALLOW
