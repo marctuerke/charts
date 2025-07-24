@@ -1,4 +1,4 @@
-{{- if and .Values.apirule.enabled .Values.enabled }}
+{{- if .Values.apirule.enabled }}
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:

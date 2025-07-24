@@ -1,4 +1,4 @@
-{{- if and .Values.apirule.enabled .Values.enabled }}
+{{- if .Values.apirule.enabled }}
 apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
@@ -16,7 +16,7 @@ spec:
   hosts:
   - {{ .Values.apirule.host }}
   service:
-    name: {{ include "aas-environment.fullname" . }}
+    name: {{ include "aas-registry.fullname" . }}
     port: {{ .Values.service.port }}
   timeout: 360
   rules:
