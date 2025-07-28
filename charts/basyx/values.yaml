@@ -205,7 +205,7 @@ mqtt:
   apirule:
       ## @param mqtt.apirules[0].enabled Enable apirule for MQTT
       ##
-    - enabled: true
+    - enabled: false
       ## @param mqtt.apirules[0].type Type of exposed service for MQTT (websockets or mqtt)
       ##
       type: websockets
