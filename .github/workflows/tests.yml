@@ -1,0 +1,67 @@
+name: Lint and Test Charts
+
+on:
+  pull_request:
+    paths:
+      - 'charts/**'
+      - '!**/README.md'
+      - '.github/workflows/tests.yaml'
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.3.0
+        with:
+          version: v3.17.0
+
+      # Python is required because `ct lint` runs Yamale (https://github.com/23andMe/Yamale) and
+      # yamllint (https://github.com/adrienverge/yamllint) which require Python
+      - name: Set up Python
+        uses: actions/setup-python@v5.3.0
+        with:
+          python-version: 3.x
+          check-latest: true
+      
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.7.0
+      
+      - name: Set target branch
+        id: set-target-branch
+        run: |
+          if [ -n "${{ github.event.pull_request.base.ref }}" ]; then
+            echo "target-branch=${{ github.event.pull_request.base.ref }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "target-branch=${{ github.event.repository.default_branch }}" >> "$GITHUB_OUTPUT"
+          fi
+      
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --target-branch ${{ steps.set-target-branch.outputs.target-branch }})
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run chart-testing (lint)
+        run: ct lint --validate-maintainers=false --lint-conf lintconf.yaml --target-branch ${{ steps.set-target-branch.outputs.target-branch }}
+
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.12.0
+        if: steps.list-changed.outputs.changed == 'true'
+      
+      - name: Add repositories
+        run: |
+          for dir in $(ls -d charts/*/); do
+            helm dependency list $dir 2> /dev/null | tail +2 | head -n -1 | awk '$3 !~ /^file:/ { print "helm repo add " $1 " " $3 }' | while read cmd; do $cmd; done
+          done
+
+      - name: Run chart-testing (install)
+        run: ct install --target-branch ${{ steps.set-target-branch.outputs.target-branch }}
+        if: steps.list-changed.outputs.changed == 'true'
