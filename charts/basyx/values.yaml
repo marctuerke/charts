@@ -1,7 +1,7 @@
 ## MongoDB parameters
 ##
 mongodb:
-  ## @param mongodb.enabled Enable MongoDB 
+  ## @param mongodb.enabled Enable MongoDB
   ##
   enabled: true
   ## MongoDB auth parameters
@@ -37,7 +37,7 @@ mongodb:
 ## Keycloak parameters
 ##
 keycloak:
-  ## @param keycloak.enabled Enable Keycloak 
+  ## @param keycloak.enabled Enable Keycloak
   ##
   enabled: false
   ## Keycloak PostgreSQL parameters
@@ -53,10 +53,10 @@ keycloak:
       ##
       username: keycloak
       ## @param keycloak.postgresql.auth.password PostgreSQL password
-      ## 
+      ##
       password: password
       ## @param keycloak.postgresql.auth.database PostgreSQL database
-      ## 
+      ##
       database: keycloak
   ## Keycloak ingress parameters
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
@@ -86,14 +86,14 @@ keycloak:
     host: keycloak.basyx.local
     ## @param keycloak.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
   ## Keycloak auth parameters
@@ -181,7 +181,7 @@ mqtt:
             pathType: ImplementationSpecific
       ## @param mqtt.ingress.hosts[1].host Ingress hostname for MQTT
       ##
-      - host: mqtt.basyx.local  
+      - host: mqtt.basyx.local
       ## @param mqtt.ingress.hosts[1].type Type of exposed service for MQTT (websockets or mqtt)
       ##
         type: mqtt
@@ -214,7 +214,7 @@ mqtt:
       gateway: kyma-system/kyma-gateway
       ## @param mqtt.apirules[0].corsPolicy Allows configuring CORS headers sent with the response. If corsPolicy is not defined, the CORS headers are enforced to be empty.
       ##
-      corsPolicy: 
+      corsPolicy:
         ## @param mqtt.apirules[0].corsPolicy.allowMethods Allowed methods for CORS header
         ##
         allowMethods:
@@ -228,7 +228,7 @@ mqtt:
         ## @param mqtt.apirules[0].corsPolicy.allowMethods Allowed origins for CORS header
         ##
         allowOrigins:
-          - regex: ".*" # allow all origins
+          - regex: ".*"  # allow all origins
         ## @param mqtt.apirules[0].corsPolicy.allowCredentials Allow credentials for CORS header
         ##
         allowCredentials: true
@@ -249,7 +249,7 @@ mqtt:
       gateway: kyma-system/kyma-gateway
       ## @param mqtt.apirules[1].corsPolicy Allows configuring CORS headers sent with the response. If corsPolicy is not defined, the CORS headers are enforced to be empty.
       ##
-      corsPolicy: 
+      corsPolicy:
         ## @param mqtt.apirules[1].corsPolicy.allowMethods Allowed methods for CORS header
         ##
         allowMethods:
@@ -263,7 +263,7 @@ mqtt:
         ## @param mqtt.apirules[1].corsPolicy.allowMethods Allowed origins for CORS header
         ##
         allowOrigins:
-          - regex: ".*" # allow all origins
+          - regex: ".*"  # allow all origins
         ## @param mqtt.apirules[1].corsPolicy.allowCredentials Allow credentials for CORS header
         ##
         allowCredentials: true
@@ -274,7 +274,7 @@ mqtt:
       ##
       annotations: {}
   ## MQTT auth parameters
-  ## 
+  ##
   auth:
     ## @param mqtt.auth.enabled Enabled auth for MQTT auth
     ##
@@ -353,19 +353,19 @@ aas-registry:
     host: registry.basyx.local
     ## @param aas-registry.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
     ## @param aas-registry.apirule.corsPolicy CORS policy for the apirule
     ##
-    corsPolicy: 
+    corsPolicy:
       allowMethods:
       - POST
       - GET
@@ -384,8 +384,8 @@ aas-registry:
       - Access-Control-Request-Method
       - Access-Control-Request-Headers
       allowOrigins:
-        - regex: ".*" # allow all origins
-      allowCredentials: true 
+        - regex: ".*"  # allow all origins
+      allowCredentials: true
   ## @param aas-registry.config Configuration for AAS Registry
   ##
   config: |-
@@ -543,19 +543,19 @@ sm-registry:
     host: smregistry.basyx.local
     ## @param sm-registry.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
     ## @param sm-registry.apirule.corsPolicy CORS policy for the apirule
     ##
-    corsPolicy: 
+    corsPolicy:
       allowMethods:
       - POST
       - GET
@@ -574,8 +574,8 @@ sm-registry:
       - Access-Control-Request-Method
       - Access-Control-Request-Headers
       allowOrigins:
-        - regex: ".*" # allow all origins
-      allowCredentials: true 
+        - regex: ".*"  # allow all origins
+      allowCredentials: true
   ## @param sm-registry.config Configuration for SM Registry
   ##
   config: |-
@@ -754,19 +754,19 @@ aas-discovery:
     host: discovery.basyx.local
     ## @param aas-discovery.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
     ## @param aas-discovery.apirule.corsPolicy CORS policy for the apirule
     ##
-    corsPolicy: 
+    corsPolicy:
       allowMethods:
       - POST
       - GET
@@ -785,10 +785,10 @@ aas-discovery:
       - Access-Control-Request-Method
       - Access-Control-Request-Headers
       allowOrigins:
-        - regex: ".*" # allow all origins
-      allowCredentials: true 
+        - regex: ".*"  # allow all origins
+      allowCredentials: true
   ## @param aas-discovery.rbac Configuration for AAS Discovery RBAC
-  rbac: 
+  rbac:
     ## @param aas-discovery.rbac.rules Rules for AAS Discovery RBAC
     rules: |
       [
@@ -874,7 +874,6 @@ aas-environment:
     # spring.data.mongodb.password=adminPassword
 
     #basyx.environment=file:aas
-    
     basyx.cors.allowed-origins=*
     basyx.cors.allowed-methods=GET,POST,PATCH,DELETE,PUT,OPTIONS,HEAD
     # URL of AAS Registry
@@ -888,7 +887,7 @@ aas-environment:
     basyx.externalurl=https://basyx.local
     spring.servlet.multipart.max-file-size=128MB
     spring.servlet.multipart.max-request-size=128MB
-    
+
     # Depends on: @param mqtt.enabled
     basyx.aasrepository.feature.mqtt.enabled = true
     # Depends on: @param mqtt.enabled
@@ -935,19 +934,19 @@ aas-environment:
     host: basyx.local
     ## @param aas-environment.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
     ## @param aas-environment.apirule.corsPolicy CORS policy for the apirule
     ##
-    corsPolicy: 
+    corsPolicy:
       allowMethods:
       - POST
       - GET
@@ -966,7 +965,7 @@ aas-environment:
       - Access-Control-Request-Method
       - Access-Control-Request-Headers
       allowOrigins:
-        - regex: ".*" # allow all origins
+        - regex: ".*"  # allow all origins
       allowCredentials: true
   ## @param aas-environment.rbac Configuration for AAS Environment RBAC
   rbac:
@@ -1165,19 +1164,19 @@ aas-web-ui:
     host: ui.basyx.local
     ## @param aas-web-ui.apirule.methods HTTP methods allowed for CORS header
     ##
-    methods: 
-      - "GET" 
-      - "HEAD" 
-      - "POST" 
-      - "PUT" 
-      - "DELETE" 
-      - "CONNECT" 
-      - "OPTIONS" 
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
       - "TRACE"
       - "PATCH"
     ## @param aas-web-ui.apirule.corsPolicy CORS policy for the apirule
     ##
-    corsPolicy: 
+    corsPolicy:
       allowMethods:
       - POST
       - GET
@@ -1196,7 +1195,7 @@ aas-web-ui:
       - Access-Control-Request-Method
       - Access-Control-Request-Headers
       allowOrigins:
-        - regex: ".*" # allow all origins
+        - regex: ".*"  # allow all origins
       allowCredentials: true
   ## AAS Web UI config parameters
   ##
@@ -1237,7 +1236,7 @@ aas-web-ui:
     ## Depends on: @param keycloak.extraVolumes (Keycloak Realm Import)
     ##
     keycloakClientId: basyx-web-ui
-  
+
   ## AAS Web UI external plugins parameters
   ##
   externalPlugins:
