@@ -11,6 +11,7 @@ mongodb:
     ## ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
     ##
     enabled: true
+    test: halo
     ## @param mongodb.rootUser MongoDB root user
     ##
     rootUser: adminUser
