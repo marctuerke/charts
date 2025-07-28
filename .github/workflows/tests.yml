@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
-        run: ct lint --validate-maintainers false --lint-conf lintconf.yaml --target-branch ${{ steps.set-target-branch.outputs.target-branch }}
+        run: ct lint --validate-maintainers=false --lint-conf lintconf.yaml --target-branch ${{ steps.set-target-branch.outputs.target-branch }}
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.12.0
