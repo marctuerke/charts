@@ -154,6 +154,10 @@ The configuration for external supporting charts are generally added as part of 
 
         Any ConfigMaps or other resources not installed directly as part of this process, must be deleted manually.
 
+## Linting and testing
+
+The linting and testing of the Helm Chart is done with [Helm Chart Testing](https://github.com/helm/chart-testing). Please run this tool locally before commiting your changes.
+
 ## TODOs
 
 1. Add other auxiliary services and integrating them in charts.
