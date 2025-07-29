@@ -338,6 +338,9 @@ aas-registry:
     ## @param aas-registry.ingress.enabled Enable ingress for AAS Registry
     ##
     enabled: false
+    ## @param aas-registry.ingress.ingressClassName Set Ingress Class for AAS Registry
+    ##
+    ingressClassName: ""
     ## @param aas-registry.ingress.host Ingress hostname for AAS Registry
     ##
     host: registry.basyx.factory-x.catena-x.net
@@ -528,6 +531,9 @@ sm-registry:
     ## @param sm-registry.ingress.enabled Enable ingress for SM Registry
     ##
     enabled: false
+    ## @param sm-registry.ingress.ingressClassName Set Ingress Class for SM Registry
+    ##
+    ingressClassName: ""
     ## @param sm-registry.ingress.host Ingress hostname for SM Registry
     ##
     host: smregistry.basyx.local
@@ -739,6 +745,9 @@ aas-discovery:
     ## @param aas-discovery.ingress.enabled Enable ingress for AAS Discovery
     ##
     enabled: false
+    ## @param aas-discovery.ingress.ingressClassName Set Ingress Class for AAS Discovery
+    ##
+    ingressClassName: ""
     ## @param aas-discovery.ingress.host Ingress hostname for AAS Discovery
     ##
     host: discovery.basyx.local
@@ -919,6 +928,9 @@ aas-environment:
     ## @param aas-environment.ingress.enabled Enable ingress for AAS Environment
     ##
     enabled: false
+    ## @param aas-environment.ingress.ingressClassName Set Ingress Class for AAS Environment
+    ##
+    ingressClassName: ""
     ## @param aas-environment.ingress.host Ingress hostname for AAS Environment
     ##
     host: basyx.local
@@ -1149,6 +1161,9 @@ aas-web-ui:
     ## @param aas-web-ui.ingress.enabled Enable ingress for AAS Web UI
     ##
     enabled: false
+    ## @param aas-web-ui.ingress.ingressClassName Set Ingress Class for AAS Web UI
+    ##
+    ingressClassName: ""
     ## @param aas-web-ui.ingress.host Ingress hostname for AAS Web UI
     ##
     host: ui.basyx.local

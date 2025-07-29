@@ -27,6 +27,7 @@ service:
 
 ingress:
   enabled: false
+  ingressClassName: ""
   host: aas-registry.local
 
 apirule:

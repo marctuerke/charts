@@ -30,6 +30,7 @@ externalPlugins:
 
 ingress:
   enabled: false
+  ingressClassName: ""
   host: aas-web-ui.local
 
 apirule:

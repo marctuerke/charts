@@ -27,6 +27,7 @@ service:
 
 ingress:
   enabled: false
+  ingressClassName: ""
   host: sm-registry.local
 
 # Content of application.properties

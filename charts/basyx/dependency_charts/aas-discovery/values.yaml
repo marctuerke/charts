@@ -16,6 +16,7 @@ service:
 
 ingress:
   enabled: false
+  ingressClassName: ""
   host: aas-discovery.local
 
 apirule:
