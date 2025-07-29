@@ -5,8 +5,10 @@ metadata:
   labels:
     {{- include "aas-web-ui.labels" . | nindent 4 }}
   name: {{ include "aas-web-ui.fullname" . }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- with .Values.ingress.ingressClassName }}
   ingressClassName: {{ . }}

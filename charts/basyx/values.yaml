@@ -341,6 +341,9 @@ aas-registry:
     ## @param aas-registry.ingress.ingressClassName Set Ingress Class for AAS Registry
     ##
     ingressClassName: ""
+    ## @param aas-registry.ingress.annotations Set Ingress Annotations for AAS Registry
+    ##
+    annotations: {}
     ## @param aas-registry.ingress.host Ingress hostname for AAS Registry
     ##
     host: registry.basyx.factory-x.catena-x.net
@@ -534,6 +537,9 @@ sm-registry:
     ## @param sm-registry.ingress.ingressClassName Set Ingress Class for SM Registry
     ##
     ingressClassName: ""
+    ## @param sm-registry.ingress.annotations Set Ingress Annotations for SM Registry
+    ##
+    annotations: {}
     ## @param sm-registry.ingress.host Ingress hostname for SM Registry
     ##
     host: smregistry.basyx.local
@@ -748,6 +754,9 @@ aas-discovery:
     ## @param aas-discovery.ingress.ingressClassName Set Ingress Class for AAS Discovery
     ##
     ingressClassName: ""
+    ## @param aas-discovery.ingress.annotations Set Ingress Annotations for AAS Discovery
+    ##
+    annotations: {}
     ## @param aas-discovery.ingress.host Ingress hostname for AAS Discovery
     ##
     host: discovery.basyx.local
@@ -931,6 +940,9 @@ aas-environment:
     ## @param aas-environment.ingress.ingressClassName Set Ingress Class for AAS Environment
     ##
     ingressClassName: ""
+    ## @param aas-environment.ingress.annotations Set Ingress Annotations for AAS Environment
+    ##
+    annotations: {}
     ## @param aas-environment.ingress.host Ingress hostname for AAS Environment
     ##
     host: basyx.local
@@ -1164,6 +1176,9 @@ aas-web-ui:
     ## @param aas-web-ui.ingress.ingressClassName Set Ingress Class for AAS Web UI
     ##
     ingressClassName: ""
+    ## @param aas-web-ui.ingress.annotations Set Ingress Annotations for AAS Web UI
+    ##
+    annotations: {}
     ## @param aas-web-ui.ingress.host Ingress hostname for AAS Web UI
     ##
     host: ui.basyx.local

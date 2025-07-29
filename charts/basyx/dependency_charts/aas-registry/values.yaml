@@ -28,6 +28,7 @@ service:
 ingress:
   enabled: false
   ingressClassName: ""
+  annotations: {}
   host: aas-registry.local
 
 apirule:

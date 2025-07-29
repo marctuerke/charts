@@ -17,6 +17,7 @@ service:
 ingress:
   enabled: false
   ingressClassName: ""
+  annotations: {}
   host: aas-discovery.local
 
 apirule:
