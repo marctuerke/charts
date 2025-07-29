@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "helm"
+    directory: "/charts/*"
+    schedule:
+      interval: "daily"
+    labels:
+      - "helm"
+      - "dependencies"
+      - "dependabot"
