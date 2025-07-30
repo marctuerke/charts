@@ -2,12 +2,16 @@ name: Lint and Test Charts
 
 on:
   pull_request:
+    branches:
+      - main
     paths:
       - 'charts/**'
       - '!**/README.md'
       - '.github/workflows/tests.yaml'
   
   push:
+    branches:
+      - main
     paths:
       - 'charts/**'
       - '!**/README.md'
