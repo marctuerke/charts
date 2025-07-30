@@ -5,10 +5,14 @@ metadata:
   labels:
     {{- include "sm-registry.labels" . | nindent 4 }}
   name: {{ include "sm-registry.fullname" . }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
-  ingressClassName: nginx
+  {{- with .Values.ingress.ingressClassName }}
+  ingressClassName: {{ . }}
+  {{- end }}
   tls:
   - hosts:
       - {{ .Values.ingress.host }}

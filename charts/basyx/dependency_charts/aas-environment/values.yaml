@@ -20,6 +20,8 @@ startup:
 
 ingress:
   enabled: false
+  ingressClassName: ""
+  annotations: {}
   host: aas-environment.local
 
 apirule:
