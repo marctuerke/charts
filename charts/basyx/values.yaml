@@ -325,6 +325,12 @@ mqtt:
     #   acl:
     #     - topic: "#"
     #       access: readwrite
+  ## @param mqtt.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param mqtt.securityContext Security Context
+  ##
+  securityContext: {}
 
 ## AAS Registry parameters
 ##
@@ -350,6 +356,12 @@ aas-registry:
     ## @param aas-registry.image.pullPolicy Pull policy of the AAS Registry image
     ##
     pullPolicy: IfNotPresent
+  ## @param aas-registry.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param aas-registry.securityContext Security Context
+  ##
+  securityContext: {}
   ## AAS Registry service parameters
   ##
   service:
@@ -553,6 +565,12 @@ sm-registry:
     ## @param sm-registry.image.pullPolicy Pull policy of the SM Registry image
     ##
     pullPolicy: Always
+  ## @param sm-registry.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param sm-registry.securityContext Security Context
+  ##
+  securityContext: {}
   ## SM Registry service parameters
   ##
   service:
@@ -747,6 +765,12 @@ aas-discovery:
     ## @param aas-discovery.image.pullPolicy Pull policy of the AAS Discovery image
     ##
     pullPolicy: IfNotPresent
+  ## @param aas-discovery.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param aas-discovery.securityContext Security Context
+  ##
+  securityContext: {}
   ## AAS Discovery service parameters
   ##
   service:
@@ -907,6 +931,12 @@ aas-environment:
     ## @param aas-environment.image.pullPolicy Pull policy of the AAS Environment image
     ##
     pullPolicy: Always
+  ## @param aas-environment.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param aas-environment.securityContext Security Context
+  ##
+  securityContext: {}
   ## AAS Environment service parameters
   ##
   service:
@@ -1205,6 +1235,12 @@ aas-web-ui:
     ## @param aas-web-ui.image.pullPolicy Pull policy of the AAS Web UI image
     ##
     pullPolicy: Always
+  ## @param aas-web-ui.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param aas-web-ui.securityContext Security Context
+  ##
+  securityContext: {}
   ## AAS Web UI ingress parameters
   ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##

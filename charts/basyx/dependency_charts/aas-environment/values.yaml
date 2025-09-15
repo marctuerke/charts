@@ -50,6 +50,17 @@ ingress:
   annotations: {}
   host: aas-environment.local
 
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 apirule:
   enabled: false
   host: aas-environment.local

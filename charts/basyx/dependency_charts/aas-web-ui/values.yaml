@@ -33,6 +33,17 @@ service:
   type: ClusterIP
   port: 3000
 
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
 config:
   aasRepoUrl: "aas-environment:8080/shells"
   aasSubmodelsRepoUrl: "aas-environment:8080/submodels"
