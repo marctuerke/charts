@@ -1,0 +1,186 @@
+#################################################################################
+ # Copyright (C) 2025 SAP SE
+ #
+ # Permission is hereby granted, free of charge, to any person obtaining
+ # a copy of this software and associated documentation files (the
+ # "Software"), to deal in the Software without restriction, including
+ # without limitation the rights to use, copy, modify, merge, publish,
+ # distribute, sublicense, and/or sell copies of the Software, and to
+ # permit persons to whom the Software is furnished to do so, subject to
+ # the following conditions:
+ #
+ # The above copyright notice and this permission notice shall be
+ # included in all copies or substantial portions of the Software.
+ #
+ # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ # NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #
+ # SPDX-License-Identifier: MIT
+#################################################################################
+
+---
+imagePullSecrets: []
+
+image: 
+  name: eclipsebasyx/digitaltwinregistry:2.0.0-SNAPSHOT
+  pullPolicy: IfNotPresent
+
+resources: {}
+podAnnotations: {}
+
+kafka:
+  connectionString: null
+mongodb:
+  connectionString: mongodb://mongoAdmin:mongoPassword@mongo:27017
+
+service:
+  type: ClusterIP
+  port: 8080
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: false
+  ingressClassName: ""
+  annotations: {}
+  host: digital-twin-registry.local
+
+apirule:
+  enabled: false
+  host: digital-twin-registry.local
+  methods: 
+      - "GET" 
+      - "HEAD" 
+      - "POST" 
+      - "PUT" 
+      - "DELETE" 
+      - "CONNECT" 
+      - "OPTIONS" 
+      - "TRACE"
+      - "PATCH"
+  # -- Allows configuring CORS headers sent with the response. If corsPolicy is not defined, the CORS headers are enforced to be empty.
+  corsPolicy: 
+    allowMethods:
+    - POST
+    - GET
+    - PUT
+    - DELETE
+    - PATCH
+    - OPTIONS
+    - HEAD
+    allowOrigins:
+      - regex: ".*" # allow all origins
+    allowCredentials: true
+
+# Content of application.properties
+config: |
+  spring.application.name=Digital Twin Registry
+  spring.profiles.active=logEvents,InMemory
+
+  server.port=8081
+
+  logging.level.root=DEBUG
+
+  basyx.cors.allowed-origins="*"
+  basyx.cors.allowed-methods="GET,POST,PATCH,DELETE,PUT,OPTIONS,HEAD"
+  basyx.aasregistry.feature.discoveryintegration.enabled=true
+  basyx.aasregistry.feature.discoveryintegration.baseUrl=http://aasregistry.basyx.local:8080
+
+rbac:
+  rules: |
+    [
+      {
+        "role": "basyx-reader",
+        "action": "READ",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "admin",
+        "action": ["CREATE", "READ", "UPDATE", "DELETE"],
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "basyx-reader-two",
+        "action": "READ",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "dummyShellId_3"
+        }
+      },
+      {
+        "role": "basyx-creator",
+        "action": "CREATE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "basyx-updater",
+        "action": "UPDATE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "basyx-updater-two",
+        "action": "UPDATE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "dummyShellId_3"
+        }
+      },
+      {
+        "role": "basyx-asset-updater",
+        "action": "UPDATE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "basyx-asset-updater-two",
+        "action": "UPDATE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "specificAasId-2"
+        }
+      },
+      {
+        "role": "basyx-deleter",
+        "action": "DELETE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "*"
+        }
+      },
+      {
+        "role": "basyx-deleter-two",
+        "action": "DELETE",
+        "targetInformation": {
+          "@type": "aas-registry",
+          "aasIds": "specificAasId-2"
+        }
+      }
+    ]
