@@ -1220,6 +1220,126 @@ aas-environment:
         }
       ]
 
+## Digital Twin Registry parameters
+##
+digital-twin-registry:
+  ## @param digital-twin-registry.enabled Enable Digital Twin Registry
+  ##
+  enabled: true
+  ## Digital Twin Registry image parameters
+  ##
+  image:
+    ## @param digital-twin-registry.image.name Name of the Digital Twin Registry image
+    name: eclipsebasyx/digitaltwinregistry:2.0.0-SNAPSHOT
+    ## @param digital-twin-registry.image.pullPolicy Pull policy of the Digital Twin Registry image
+    ##
+    pullPolicy: IfNotPresent
+  ## @param digital-twin-registry.podSecurityContext Pod Security Context
+  ##
+  podSecurityContext: {}
+  ## @param digital-twin-registry.securityContext Security Context
+  ##
+  securityContext: {}
+  ## Digital Twin Registry service parameters
+  ##
+  service:
+    ## @param digital-twin-registry.service.port Port of the Digital Twin Registry service
+    ##
+    port: 8080
+  ## Digital Twin Registry Kafka parameters
+  ## Keep it null if not deploying a Kafka instance.
+  ##
+  kafka:
+    ## @param digital-twin-registry.kafka.connectionString Connection string for Kafka
+    ##
+    connectionString: null
+  ## Digital Twin Registry MongoDB parameters
+  ##
+  mongodb:
+    ## @param digital-twin-registry.mongodb.connectionString Connection string for MongoDB
+    ## Depends on: @param mongodb.auth.*, @param mongodb.service.nameOverride
+    ##
+    connectionString: mongodb://adminUser:adminPassword@mongodb:27017
+  ## Digital Twin Registry ingress parameters
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
+  ##
+  ingress:
+    ## @param digital-twin-registry.ingress.enabled Enable ingress for Digital Twin Registry
+    ##
+    enabled: false
+    ## @param digital-twin-registry.ingress.ingressClassName Set Ingress Class for Digital Twin Registry
+    ##
+    ingressClassName: ""
+    ## @param digital-twin-registry.ingress.annotations Set Ingress Annotations for Digital Twin Registry
+    ##
+    annotations: {}
+    ## @param digital-twin-registry.ingress.host Ingress hostname for Digital Twin Registry
+    ##
+    host: digital-twin-registry.basyx.net
+  ## AAS Registry apirule parameters
+  ## ref: https://kyma-project.io/#/api-gateway/user/custom-resources/apirule/04-10-apirule-custom-resource
+  ##
+  apirule:
+    ## @param digital-twin-registry.apirule.enabled Enable apirule for Digital Twin Registry
+    ##
+    enabled: false
+    ## @param digital-twin-registry.apirule.hostname Apirule hostname for Digital Twin Registry
+    ##
+    host: digital-twin-registry.basyx.local
+    ## @param digital-twin-registry.apirule.methods HTTP methods allowed for CORS header
+    ##
+    methods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
+      - "TRACE"
+      - "PATCH"
+    ## @param digital-twin-registry-registry.apirule.corsPolicy CORS policy for the apirule
+    ##
+    corsPolicy:
+      allowMethods:
+      - POST
+      - GET
+      - PUT
+      - DELETE
+      - PATCH
+      - OPTIONS
+      - HEAD
+      allowHeaders:
+      - Access-Control-Allow-Headers
+      - Origin
+      - Accept
+      - Authorization
+      - X-Requested-With
+      - Content-Type
+      - Access-Control-Request-Method
+      - Access-Control-Request-Headers
+      allowOrigins:
+        - regex: ".*"  # allow all origins
+      allowCredentials: true
+  ## @param digital-twin-registry-registry.config Configuration for Digital Twin Registry
+  ##
+  config: |-
+    spring.application.name=Digital Twin Registry
+    spring.profiles.active=logEvents,InMemory
+
+    server.port=8081
+
+    logging.level.root=DEBUG
+
+    basyx.cors.allowed-origins="*"
+    basyx.cors.allowed-methods="GET,POST,PATCH,DELETE,PUT,OPTIONS,HEAD"
+    basyx.aasregistry.feature.discoveryintegration.enabled=true
+    basyx.aasregistry.feature.discoveryintegration.baseUrl=http://aasregistry.basyx.local:8080
+  ## @param digital-twin-registry-registry.rbac Configuration for Digital Twin Registry RBAC
+  rbac:
+    ## @param digital-twin-registry-registry.rbac.rules Rules for Digital Twin Registry RBAC
+    rules: ""
+
 ## AAS Web UI parameters
 ##
 aas-web-ui:

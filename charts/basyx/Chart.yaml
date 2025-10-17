@@ -49,6 +49,10 @@ dependencies:
   version: "0.0.1"
   repository: file://dependency_charts/aas-environment
   condition: aas-environment.enabled
+- name: digital-twin-registry
+  version: "0.0.1"
+  repository: file://dependency_charts/digital-twin-registry
+  condition: digital-twin-registry.enabled
 - name: aas-web-ui
   version: "0.0.1"
   repository: file://dependency_charts/aas-web-ui
